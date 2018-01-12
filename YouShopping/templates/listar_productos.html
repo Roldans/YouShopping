@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang='es'>
+  <head>
+  <title>Lista de productos</title>
+  <meta charset='utf-8'>
+  </head>
+  <body>
+    <h1>Productos</h1>
+  		{% for elemento in lista %}
+  			<ul>
+        	<li><strong>Nombre: <a href="/producto?id={{elemento.id}}"> {{elemento.name}}</a></strong></li>
+      		<li><strong>Precio: {{elemento.price}}</strong></li>
+  			</ul>
+ 		{% endfor %}
+  </body>
+</html>
