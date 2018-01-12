@@ -8,10 +8,11 @@
     <h1>Productos</h1>
   		{% for elemento in lista %}
   			<ul>
-        	<li><strong>Nombre:{{elemento.name}}</strong></li>
-      		<li><strong>Precio:{{elemento.price}}</strong></li>
+        	<li><strong>Nombre: {{elemento.name}}</strong></li>
+      		<li><strong>Precio: {{elemento.price}}</strong></li>
     		<li><strong>Descripción: {{elemento.descripcion}}</strong></li>
-    		<li><strong>Tipo de dieta: {{elemento.campos}}</strong></li>
+    		<li><strong>Tipo de dieta: {{elemento.categorias}}</strong></li>
+    		<li><strong>URL de compra: {{elemento.url}}</strong></li>
   			</ul>
  		{% endfor %}
   </body>
