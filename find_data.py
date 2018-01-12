@@ -1,5 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import os
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'YouShopping.settings'
+
 import urllib2
 from urllib2 import *
 from bs4 import BeautifulSoup
@@ -11,7 +15,6 @@ import sqlite3
 reload(sys)
 
 sys.setdefaultencoding("utf-8")
-
 
 
 root="http://www.foody.es"
@@ -78,7 +81,10 @@ def filtrarProduct(html):
     conn.text_factory = str
     # Almacenamos los datos
     price=float(price[:-2].replace(",","."))
-    
+    name=name.replace("ñ","ny").replace("Ñ","NY")
+    description=description.replace("ñ","ny").replace("Ñ","NY")
+    fields=fields.replace("ñ","ny").replace("Ñ","NY")
+
     conn.execute("INSERT INTO principal_producto (name,price,descripcion,categorias,url) \
                              VALUES (?,?,?,?,?);", [name, price, description,fields,URL])
     # commit y close connection
