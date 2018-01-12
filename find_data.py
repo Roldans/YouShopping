@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 from principal.models import Producto 
 import sys
 import sqlite3
+from principal import RS_SoloItems
 #IMPORTANTE!!!!! PERMITE EL USO DE URLS CON TILDES SIN PROBLEMAS 
 #USAMOS EL ENCODE UTF-8 EN VEZ DE UNICODE!!!!
 reload(sys)
@@ -171,4 +172,4 @@ def crawl():
 
      
 crawl()
-
+RS_SoloItems.magicKingsMethod(5)

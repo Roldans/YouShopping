@@ -11,14 +11,14 @@
         <li><strong>Descripción: {{producto.descripcion}}</strong></li>
         <li><strong>Tipo de dieta: {{producto.categorias}}</strong></li>
         <li><strong>Cómpralo <a href="{{producto.url}}">aquí</a></strong></li>
-<!--         <h2>Productos recomendados: </h2>
+         <h2>Productos recomendados: </h2>
         	{% for r in recomendados %}
   				<ul>
-        		<li><strong>Nombre: <a href="{{r.ver_producto}}"> {{r.name}}</a></strong></li>
+        		<li><strong>Nombre: <a href="/producto?id={{r.id}}"> {{r.name}}</a></strong></li>
       			<li><strong>Precio: {{r.price}}</strong></li>
   				</ul>
  			{% endfor %}
-        <a href='/..'> &lt&ltVolver</a> -->
+        <a href='/..'> &lt&ltVolver</a>
   		</ul>
   </body>
 </html>

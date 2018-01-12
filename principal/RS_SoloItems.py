@@ -1,12 +1,12 @@
-#encoding:utf-8
-
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'YouShopping.settings'
-
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 from difflib import SequenceMatcher
 from principal.models import Producto
 import csv
-
+import ast
 
 # Returns a distance-based similarity score for item1 and item2
 def sim_distance(item1, item2):
@@ -27,7 +27,7 @@ def sim_distance(item1, item2):
 # Number of results and similarity function are optional params.
 def topMatches(item, n=5, similarity=sim_distance):
     items = Producto.objects.all()
-    scores = [(similarity(item, other), other) for other in items if other != item]
+    scores = [(similarity(item, other), other.id) for other in items if other != item]
     scores.sort()
     scores.reverse()
     return scores[0:n]
@@ -45,7 +45,7 @@ def calculateSimilarItems(n=10):
         if c % 100 == 0: print "%d / %d" % (c, len(items))
         # Find the most similar items to this one
         scores = topMatches(item, n=n, similarity=sim_distance)
-        result[item] = scores
+        result[item.id] = scores
     print "fin del calculo de la matriz"
     return result
 
@@ -54,22 +54,28 @@ def magicKingsMethod(N):
     # Write similaItemsMatrix
     similarItemsDic = calculateSimilarItems(n=N)
     with open('itemDic.csv','wb') as csvfile:
-        spamwriter = csv.writer(csvfile, delimiter=',')
         for item in similarItemsDic:
-            spamwriter.writerow(str(item)+str(similarItemsDic[item]))
+            csvfile.write(str(item) + '|')
+            csvfile.write(str(similarItemsDic[item]) + '|')
 
 def readMatrix():
-    return "happy gamero"
+    itemDic = {}
+    i = 0
+    with open('itemDic.csv','rb') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter='|')
+        for row in spamreader:
+            for item in row:
+                if i % 2 == 0:
+                    itemDic[int(item)] = ast.literal_eval(row[i+1])
+                i = i + 1
+                if i == len(row)-1:
+                    break
+
+    return itemDic
 
 
 def getRecommendedItems(itemMatch):
-    #TODO
-    return True
+    itemDic = readMatrix()
 
-
-def main():
-    magicKingsMethod(3)
-
-
-main()
+    return itemDic[itemMatch]
 

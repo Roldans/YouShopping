@@ -6,6 +6,11 @@ TEMPLATE_DEBUG = DEBUG
 import os
 RUTA_PROYECTO = os.path.dirname(os.path.realpath(__file__))
 
+
+def rutaproyecto():
+    return RUTA_PROYECTO
+
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
