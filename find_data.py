@@ -77,6 +77,8 @@ def filtrarProduct(html):
     conn = sqlite3.connect('db.sqlite3')
     conn.text_factory = str
     # Almacenamos los datos
+    price=float(price[:-2].replace(",","."))
+    
     conn.execute("INSERT INTO principal_producto (name,price,descripcion,categorias,url) \
                              VALUES (?,?,?,?,?);", [name, price, description,fields,URL])
     # commit y close connection
