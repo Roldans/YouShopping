@@ -1,3 +1,11 @@
 from django.db import models
 
-# Create your models here.
+class Producto(models.Model):
+    name = models.CharField(max_length=64)
+    price = models.FloatField()
+    descripcion = models.CharField()
+    campos = models.CharField(max_length=50)
+    url = models.URLField()
+
+    def __unicode__(self):
+        return str(self.name)
