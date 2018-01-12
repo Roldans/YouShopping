@@ -8,7 +8,7 @@
     <h1>Productos</h1>
   		{% for elemento in lista %}
   			<ul>
-        	<li><strong>Nombre: <a href="{{elemento.ver_producto}}"> {{elemento.name}}</strong></li></a>
+        	<li><strong>Nombre: <a href="/producto?id={{elemento.id}}"> {{elemento.name}}</a></strong></li>
       		<li><strong>Precio: {{elemento.price}}</strong></li>
   			</ul>
  		{% endfor %}

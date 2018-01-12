@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^lista/$', 'principal.views.listar_productos'),
-    url(r'^producto/$', 'principal.views.ver_producto'),
+    url(r'^lista/', 'principal.views.listar_productos'),
+    url(r'^producto/', 'principal.views.ver_producto'),
+
 ]
