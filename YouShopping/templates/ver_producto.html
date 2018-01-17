@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang='es'>
   <head>
-  <title>Lista de productos</title>
-  <meta charset='utf-8'>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+      <title>Ver Producto</title>
+      <meta charset='utf-8'>
   </head>
-  <body>
-    <h1>{{producto.name}}</h1>
-  		<ul>
-        <li><strong>Precio: {{producto.price}} €</strong></li>
-        <li><strong>Descripción: {{producto.descripcion}}</strong></li>
-        <li><strong>Tipo de dieta: {{producto.categorias}}</strong></li>
-        <li><strong>Cómpralo <a href="{{producto.url}}">aquí</a></strong></li>
-         <h2>Productos recomendados: </h2>
-        	{% for r in recomendados %}
-  				<ul>
-        		<li><strong>Nombre: <a href="/producto?id={{r.id}}"> {{r.name}}</a></strong></li>
-      			<li><strong>Precio: {{r.price}}</strong></li>
-  				</ul>
- 			{% endfor %}
-        <a href='/..'> &lt&ltVolver</a>
-  		</ul>
+  <body style="background-color: #69f042;">
+  <h1><center>{{producto.name}}</center></h1>
+  <br><br>
+  		<div class="container" >
+        <div class="row">
+        <div class="col-xs-6" style="background-color: #c4f9b5;">
+            <table class="table">
+                <tr >
+                    <th>Descripción:</th> <th>{{producto.descripcion}}</th>
+                </tr>
+                <tr>
+                    <th>Tipo de dieta:</th> <th>{{producto.categorias}}</th>
+                </tr>
+                <tr>
+                    <th>Precio:</th> <th>{{producto.price}} €     <a href="{{producto.url}}" class="btn btn-primary">Cómpralo aquí</a></th>
+
+                </tr>
+            </table>
+        </div>
+        <div class="w-100" style="background-color: #c4f9b5;">
+        <h5>Te podría interesar: </h5>
+        <table class="table">
+            {% for r in recomendados %}
+            <tr>
+                <th><a href="/producto?id={{r.id}}" class="nav-link active"> {{r.name}}</a></th>
+                <th>{{r.price}}€</th>
+            </tr>
+            {% endfor %}
+  		</table></div>
+        </div></div>
+        <center><a href='/../lista/' class="btn btn-primary"> &lt&ltVolver</a></center>
   </body>
 </html>

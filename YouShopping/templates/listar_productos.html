@@ -1,16 +1,61 @@
 <!DOCTYPE html>
 <html lang='es'>
   <head>
-  <title>Lista de productos</title>
-  <meta charset='utf-8'>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+      <title class="badge badge-secondary">Lista de productos</title>
+      <meta charset='utf-8'>
   </head>
-  <body>
-    <h1>Productos</h1>
-  		{% for elemento in lista %}
-  			<ul>
-        	<li><strong>Nombre: <a href="/producto?id={{elemento.id}}"> {{elemento.name}}</a></strong></li>
-      		<li><strong>Precio: {{elemento.price}}</strong></li>
-  			</ul>
- 		{% endfor %}
-  </body>
+  <body style="background-color: #69f042;" >
+    <h1><center>Productos</center></h1>
+    <br>
+    <center><div class="w-50 p-3 align-middle" style="background-color: #c4f9b5;">
+    <ul class="pagination ">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="dl-horizontal"><strong>Nombre</strong></th>
+                <th class="dl-horizontal"><strong>Precio</strong></th>
+                <th class="dl-horizontal"></th>
+            </thead>
+            <tbody>
+  		    {% for elemento in lista %}
+                <tr>
+                    <th class="dl-horizontal">{{elemento.name}}</th>
+                    <th class="dl-horizontal">{{elemento.price}}€</th>
+                    <th class="dl-horizontal"><a href="/producto?id={{elemento.id}}" class="btn btn-primary">Enlace</a> </th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </ul>
+    <ul class="pagination">
+        {% if lista.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="lista/?page=1" aria-label="Primera">
+                <span >Primera</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ lista.previous_page_number }}" aria-label="Anterior">
+                <span >Anterior</span>
+            </a>
+        </li>
+        {% endif %}
+        {% if lista.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ lista.next_page_number }}" aria-label="Siguiente">
+                <span >Siguiente</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ lista.paginator.num_pages }}" aria-label="Ultima">
+                <span >Ultima</span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+    </div></center>
+    </body>
+
+
 </html>
