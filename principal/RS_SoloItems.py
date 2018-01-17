@@ -11,7 +11,7 @@ import ast
 # Returns a distance-based similarity score for item1 and item2
 def sim_distance(item1, item2):
     distance = 0
-    distance = distance + 1/(1+abs(item1.price - item2.price))
+    distance = distance + abs(item1.price - item2.price)/item1.price
     distance = distance + SequenceMatcher(None, item1.name, item2.name).ratio()
     categorias1 = item1.categorias.split(',')
     categorias2 = item2.categorias.split(',')
@@ -78,4 +78,3 @@ def getRecommendedItems(itemMatch):
     itemDic = readMatrix()
 
     return itemDic[itemMatch]
-
